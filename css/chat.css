@@ -1,0 +1,49 @@
+#chat {
+    width: 70%;
+    height: 100%;
+    border-right: 1px solid black;
+}
+
+#message {
+    width: 80%;
+    height: 80%;
+    border: 1px solid black;
+    margin: 3% auto auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#send{
+    width: 80%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    margin: 2% auto auto;
+}
+
+.message_content{
+    width: 100%;
+    border-top: 1px solid red;
+    padding: 1%;
+}
+
+#message_send {
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.date{
+    width: 100%;
+    text-align: right;
+}
+
+.message_content:last-child{
+    border-bottom: 1px solid red;
+}
