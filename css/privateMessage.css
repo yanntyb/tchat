@@ -2,3 +2,11 @@
     height: 50%;
     width: 100%;
 }
+
+.messagePositionRight{
+    float:right;
+}
+
+.messagePositionLeft{
+    float:left;
+}

@@ -98,17 +98,39 @@ function showMessagerie(user1, user2){
     console.log("ok");
     if(user1 !== user2){
         privateMessageDiv.style.backgroundColor = "#708090"
-        privateMessageDiv.innerHTML = user1 + " " + user2;
+        showPrivateMessage(user2);
     }
 }
 
-function showPrivateMessage(user1, user2){
+function showPrivateMessage(user2){
     let xhr = new XMLHttpRequest();
     xhr.onload = function() {
         const messages = JSON.parse(xhr.responseText);
         console.log(messages);
+        privateMessageDiv.innerHTML = "";
+        for(let message of messages){
+            if(message.sended === "false"){
+                privateMessageDiv.innerHTML += `
+                <div class="privateMessageContent">
+                    <div class="messagePositionLeft">
+                        <span>${message.message}</span>
+                    </div>
+                </div>
+            `
+            }
+            else{
+                privateMessageDiv.innerHTML += `
+                <div class="privateMessageContent">
+                    <div class="messagePositionRight">
+                        <span>${message.message}</span>
+                    </div>
+                </div>
+            `
+            }
+
+        }
     }
-    xhr.open('GET', '/api/Message?showMessage=1');
+    xhr.open('GET', '/api/Message?showMessage=1&id=' + user2);
     xhr.send();
 }
 

@@ -60,6 +60,15 @@ class MessageManager
     }
 
     public function getPrivateMessage(int $user1, int $user2){
-
+        $conn = $this->db->prepare("SELECT * FROM private_message INNER JOIN private_message_user ON private_message.id = private_message_user.message_id  WHERE (private_message_user.user1_id = :id1 AND private_message_user.user2_id = :id2) OR (private_message_user.user2_id = :id1 AND private_message_user.user1_id = :id2) ");
+        $conn->bindValue(":id1", $user1);
+        $conn->bindValue(":id2", $user2);
+        $messages = [];
+        if($conn->execute()){
+            foreach($conn->fetchAll() as $select){
+                $messages[] = $select;
+            }
+        }
+        return $messages;
     }
 }
