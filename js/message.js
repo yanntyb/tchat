@@ -109,7 +109,7 @@ function showPrivateMessage(user2){
         console.log(messages);
         privateMessageDiv.innerHTML = "";
         for(let message of messages){
-            if(message.sended === "false"){
+            if(message.sended === false){
                 privateMessageDiv.innerHTML += `
                 <div class="privateMessageContent">
                     <div class="messagePositionLeft">

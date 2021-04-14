@@ -1,12 +1,17 @@
 #privateMessage{
     height: 50%;
     width: 100%;
+
+}
+
+.privateMessageContent{
+    width: 100%;
 }
 
 .messagePositionRight{
-    float:right;
+    text-align: right;
 }
 
 .messagePositionLeft{
-    float:left;
+    text-align: left;
 }
