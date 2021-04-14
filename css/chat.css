@@ -1,13 +1,11 @@
 #chat {
     width: 70%;
     height: 100%;
-    border-right: 1px solid black;
 }
 
 #message {
     width: 80%;
     height: 80%;
-    border: 1px solid black;
     margin: 3% auto auto;
     display: flex;
     flex-direction: row;
@@ -15,6 +13,8 @@
     flex-wrap: wrap;
     overflow: scroll;
     overflow-x: hidden;
+    font-size: 2rem;
+    background-color: #708090;
 }
 
 #send{
@@ -24,13 +24,12 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid black;
-    margin: 2% auto auto;
+    background-color: #708090;
+    margin: 0 auto auto;
 }
 
 .message_content{
     width: 100%;
-    border-top: 1px solid red;
     padding: 1%;
 }
 
@@ -42,8 +41,37 @@
 .date{
     width: 100%;
     text-align: right;
+    font-size: 1rem;
+    color : #C0C0C0;
+
 }
 
-.message_content:last-child{
-    border-bottom: 1px solid red;
+.message_content_end{
+    margin-left: 5%;
+    margin-top: 1%;
+    color: lightgrey;
+}
+
+.profile a{
+    color: white;
+    text-decoration: none;
+}
+
+.profile a:hover{
+    text-decoration: underline;
+    text-underline-color: white;
+}
+
+#message::-webkit-scrollbar {
+    width: 12px;
+}
+
+#message::-webkit-scrollbar-track {
+    background: #708090;
+}
+
+#message::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 20px;
+    border: 3px solid orange;
 }

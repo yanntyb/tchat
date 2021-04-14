@@ -23,12 +23,20 @@ $managerUser = new UserManager();
 
 switch($requestType) {
     case 'GET':
-        if(isset($_GET["getUser"]) && $_GET["getUser"] === "1"){
-            echo sendUserSession();
+        if(isset($_GET)){
+            if( isset($_GET["getUser"]) && $_GET["getUser"] === "1"){
+                echo sendUserSession();
+            }
+            elseif(isset($_GET["showMessage"]) === "1"){
+                if(isset($_GET["id"])){
+
+                }
+            }
+            else{
+                echo getMessages($managerMessage, $managerUser);
+            }
         }
-        else{
-            echo getMessages($managerMessage, $managerUser);
-        }
+
         break;
     case 'POST':
         $data = json_decode(file_get_contents('php://input'));
@@ -48,12 +56,14 @@ function getMessages(MessageManager $managerMessage, UserManager $managerUser): 
     // Obtention des students.
     $data = $managerMessage->getMessages();
     foreach($data as $message) {
+        $user = getUser($managerMessage, $message->getId(), $managerUser);
         /* @var Message $message*/
         $response[] = [
             'id' => $message->getId(),
             'message' => $message->getMessage(),
             'date' => $message->getDate(),
-            'user' => getUser($managerMessage, $message->getId(), $managerUser)
+            'user' => $user->getName(),
+            'user_id' => $user->getId()
         ];
     }
     // Envoi de la réponse ( on encode notre tableau au format json ).
@@ -64,7 +74,7 @@ function getUser(MessageManager $managerMessage, int $message_id, UserManager $m
     $id = $managerMessage->getUserFk($message_id);
     if(!is_null($id)){
         $user = $managerUser->getUserById($id);
-        return $user->getName();
+        return $user;
     }
     return "User inconnue";
 }
@@ -75,6 +85,10 @@ function sendMessage(MessageManager $managerMessage, int $id, string $message){
 
 function sendUserSession(){
     return json_encode(["user" => $_SESSION["user"]]);
+}
+
+function getPrivateMessage(int $id){
+
 }
 
 exit;

@@ -1,9 +1,14 @@
 const sendMessageButton = document.getElementById("sendMessage");
 const chat = document.getElementById("message_send");
 const input = document.getElementById("sendMessageInput");
-let sendStatue = false;
+const messageDiv = document.getElementById("message");
+const privateMessageDiv = document.getElementById("privateMessage");
+let scrolled = false;
+
 
 function loadMessage(){
+    const message = document.getElementsByClassName("message_content");
+
     let xhr = new XMLHttpRequest();
     xhr.onload = function() {
         const messages = JSON.parse(xhr.responseText);
@@ -11,14 +16,29 @@ function loadMessage(){
         for (let message of messages){
             chat.innerHTML += `
             <div class="message_content">
-                <div>
-                    ${message.user}  => ${message.message}
+                    <div class="profile">
+                        <a class="sendMessageLink" data-id="${message.user_id}">${message.user}</a> 
+                        <span class="date">${message.date}</span>
+                    </div> 
+                    <div class="message_content_end">${message.message}</div>
                 </div>
-                <div class="date">
-                    ${message.date}
-                </div>
+                
             </div>
         `
+        }
+        if(message.length > 0 && !scrolled){
+            messageDiv.scrollTop = message[message.length - 1].offsetTop;
+            scrolled = true;
+        }
+        let messageLink = document.getElementsByClassName("sendMessageLink");
+
+        for(let link of messageLink){
+            link.addEventListener("click", function(e){
+                e.preventDefault();
+                let id = link.getAttribute("data-id")
+                getUser(false, true, id);
+
+            })
         }
     }
     xhr.open('GET', '/api/Message');
@@ -35,24 +55,30 @@ function timeOutRecur(){
 
 function getSessionUser(message){
     if(message.length > 0) {
-        console.log("ok");
-        getUser(message).then();
+        getUser(true, false, null, message);
     }
 
 }
 
-function getUser(message){
+function getUser(send, get, user2, message = null){
+    let sended = false;
     let xhr = new XMLHttpRequest();
-    return new Promise(() => {
         xhr.onreadystatechange = (e) => {
-            if (xhr.status === 200) {
+            if (xhr.status === 200 && !sended) {
                 let user = JSON.parse(xhr.responseText)
-                sendMessageContent(message, user["user"]);
+                if(send){
+                    sendMessageContent(message, user["user"]);
+                    sended = true;
+                }
+                else{
+                    showMessagerie(user["user"], user2)
+                    sended = true;
+                }
+
             }
         };
         xhr.open('GET', '/api/Message?getUser=1');
         xhr.send();
-    });
 }
 
 function sendMessageContent(message,user){
@@ -61,17 +87,40 @@ function sendMessageContent(message,user){
         'user': user,
         'message': message,
     };
-
-    xhr.open('POST', '/api/message');
+    xhr.open('POST', '/api/Message');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(messageData));
 }
 
-sendMessageButton.addEventListener("click", function(e){
-    e.preventDefault();
-    const inputValue = input.value;
-    getSessionUser(inputValue);
-})
+function showMessagerie(user1, user2){
+    user1 = parseInt(user1);
+    user2 = parseInt(user2);
+    console.log("ok");
+    if(user1 !== user2){
+        privateMessageDiv.style.backgroundColor = "#708090"
+        privateMessageDiv.innerHTML = user1 + " " + user2;
+    }
+}
+
+function showPrivateMessage(user1, user2){
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        const messages = JSON.parse(xhr.responseText);
+        console.log(messages);
+    }
+    xhr.open('GET', '/api/Message?showMessage=1');
+    xhr.send();
+}
+
+try{
+    sendMessageButton.addEventListener("click", function(e){
+        e.preventDefault();
+        const inputValue = input.value;
+        getSessionUser(inputValue);
+        input.value = "";
+    })
+}
+catch(e){}
 
 
 timeOutRecur();

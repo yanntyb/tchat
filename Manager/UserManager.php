@@ -31,9 +31,30 @@ class UserManager
             }
             else {
                 $user
-                    ->setName($select["name"]);
+                    ->setName($select["name"])
+                    ->setId($id);
             }
         }
         return $user;
     }
+
+    public function getUserByLog(string $mail, string $pass){
+        $conn = $this->db->prepare("SELECT * FROM user WHERE mail = :mail");
+        $conn->bindValue(":mail", $mail);
+        $user = null;
+        if($conn->execute()){
+            $select = $conn->fetch();
+            if(isset($select["mail"])){
+                if($select["pass"] === $pass){
+                    $user = new User();
+                    $user
+                        ->setName($select["name"])
+                        ->setPass($select["pass"])
+                        ->setId($select["id"]);
+                }
+            }
+        }
+        return $user;
+    }
+
 }

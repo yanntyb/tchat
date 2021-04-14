@@ -35,7 +35,8 @@ class MessageManager
     }
 
     public function getUserFk(int $id){
-        $conn = $this->db->prepare("SELECT message_user.user_fk From message_user INNER JOIN message ON message.id = message_user.message_fk");
+        $conn = $this->db->prepare("SELECT message_user.user_fk From message_user WHERE message_user.message_fk = :id");
+        $conn->bindValue(":id", $id);
         if($conn->execute()){
             return $conn->fetch()["user_fk"];
         }
@@ -52,9 +53,13 @@ class MessageManager
         $id = $this->db->lastInsertId();
 
         $conn = $this->db->prepare("INSERT INTO message_user (user_fk, message_fk) VALUES (:user, :message)");
-        $conn->bindValue("user", $id_user);
+        $conn->bindValue(":user", $id_user);
         $conn->bindValue(":message", $id);
         $conn->execute();
+
+    }
+
+    public function getPrivateMessage(int $user1, int $user2){
 
     }
 }

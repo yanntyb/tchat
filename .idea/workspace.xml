@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b880b779-fb80-4ace-80e0-beb53609416f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Classes/DB.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entity/Message.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entity/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Manager/MessageManager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Manager/UserManager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Message/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/chat.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/user.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/data.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/privateMessage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/connexion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manager/MessageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Manager/MessageManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manager/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Manager/UserManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Message/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Message/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +25,21 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4" />
   <component name="ProjectId" id="1qvizjwDb8wNqB9LoHz3lKdO8T9" />
@@ -48,7 +56,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../live-api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -60,17 +68,18 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yannt\OneDrive\Bureau\formation\eval\tchat\api" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yannt\OneDrive\Bureau\formation\eval\tchat\api\utils" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,7 +98,9 @@
       <workItem from="1618242631072" duration="16000" />
       <workItem from="1618242689693" duration="1313000" />
       <workItem from="1618244024664" duration="560000" />
-      <workItem from="1618244680753" duration="12663000" />
+      <workItem from="1618244680753" duration="13270000" />
+      <workItem from="1618317773413" duration="508000" />
+      <workItem from="1618318297467" duration="14165000" />
     </task>
     <servers />
   </component>
