@@ -1,4 +1,7 @@
 <?php
+require_once("../Classes/DB.php");
+require_once("../Entity/User.php");
+require_once("../Manager/UserManager.php");
 
 use App\Classes\DB;
 use App\Entity\User;
