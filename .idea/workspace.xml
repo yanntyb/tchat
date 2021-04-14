@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b880b779-fb80-4ace-80e0-beb53609416f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/api/PrivateMessage/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/privateMessage.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/privateMessage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manager/MessageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Manager/MessageManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +49,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/PrivateMessage" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -60,11 +59,25 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yannt\OneDrive\Bureau\formation\eval\tchat\api\PrivateMessage" />
       <recent name="C:\Users\yannt\OneDrive\Bureau\formation\eval\tchat\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\yannt\OneDrive\Bureau\formation\eval\tchat\api\utils" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,7 +96,7 @@
       <workItem from="1618317773413" duration="508000" />
       <workItem from="1618318297467" duration="19876000" />
       <workItem from="1618423997607" duration="149000" />
-      <workItem from="1618434963657" duration="4558000" />
+      <workItem from="1618434963657" duration="6253000" />
     </task>
     <servers />
   </component>

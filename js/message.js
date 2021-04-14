@@ -6,7 +6,7 @@ const privateMessageDiv = document.getElementById("privateMessageSend");
 const privateMessageSuperDiv = document.getElementById("privateMessage");
 const dataDiv = document.getElementById("data");
 let formShowed = false;
-let scrolled = false;
+let scrolledChat = false;
 let privateMessageFlag = false;
 let user2Conv;
 
@@ -31,9 +31,9 @@ function loadMessage(){
             </div>
         `
         }
-        if(message.length > 0 && !scrolled){
+        if(message.length > 0 && !scrolledChat){
             messageDiv.scrollTop = message[message.length - 1].offsetTop;
-            scrolled = true;
+            scrolledChat = true;
         }
         let messageLink = document.getElementsByClassName("sendMessageLink");
 
@@ -148,8 +148,11 @@ function showPrivateMessage(user2){
             dataDiv.removeChild(dataDiv.lastChild);
             formShowed = false;
         })
+
+
         privateMessageShowForm();
     }
+
     xhr.open('GET', '/api/Message?showMessage=1&id=' + user2);
     xhr.send();
 }
@@ -167,9 +170,27 @@ function privateMessageShowForm(){
         divForm.appendChild(submit);
         divForm.style.display = "flex";
         dataDiv.appendChild(divForm);
+        submit.addEventListener("click", function(e){
+            e.preventDefault();
+            if(input.value.length > 0){
+                sendPrivateMessage(input.value);
+
+            }
+        })
         formShowed = true;
     }
 
+}
+
+function sendPrivateMessage(message){
+    let xhr = new XMLHttpRequest();
+    const messageData = {
+        'user': user2Conv,
+        'message': message,
+    };
+    xhr.open('POST', '/api/PrivateMessage');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(messageData));
 }
 
 try{

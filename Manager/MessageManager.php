@@ -71,4 +71,17 @@ class MessageManager
         }
         return $messages;
     }
+
+    public function sendPrivateMessage(int $user1, int $user2, string $message){
+        $conn = $this->db->prepare("INSERT INTO private_message (message) VALUES (:message)");
+        $conn->bindValue(":message", $message);
+        $conn->execute();
+        $id = $this->db->lastInsertId();
+
+        $conn = $this->db->prepare("INSERT INTO private_message_user (user1_id, user2_id, message_id) VALUES (:user1, :user2, :id)");
+        $conn->bindValue(":user1", $user1);
+        $conn->bindValue(":user2", $user2);
+        $conn->bindValue(":id", $id);
+        $conn->execute();
+    }
 }
