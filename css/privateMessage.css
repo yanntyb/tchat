@@ -1,12 +1,30 @@
-#privateMessage{
+#privateMessage {
+    width: 100%;
     height: 50%;
-    width: 100%;
+    background-color: #708090;
+    display: none;
 
 }
 
-.privateMessageContent{
+#privateMessageSend{
     width: 100%;
+    height: 80%;
+    margin: 1% auto auto;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    overflow: scroll;
+    overflow-x: hidden;
+    font-size: 2rem;
+    background-color: #708090;
 }
+
+.message_content{
+    width: 100%;
+    margin-top: 1%;
+    color: lightgrey;
+}
+
 
 .messagePositionRight{
     text-align: right;
@@ -14,4 +32,22 @@
 
 .messagePositionLeft{
     text-align: left;
+}
+
+.privateMessageForm{
+    background-color: #708090;
+}
+
+#privateMessageSend::-webkit-scrollbar {
+    width: 12px;
+}
+
+#privateMessageSend::-webkit-scrollbar-track {
+    background: #708090;
+}
+
+#privateMessageSend::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 20px;
+    border: 3px solid orange;
 }

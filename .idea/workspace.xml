@@ -4,6 +4,8 @@
     <list default="true" id="b880b779-fb80-4ace-80e0-beb53609416f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/privateMessage.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/privateMessage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/user.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,19 +66,6 @@
       <recent name="C:\Users\yannt\OneDrive\Bureau\formation\eval\tchat\api\utils" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -92,7 +81,9 @@
       <workItem from="1618244024664" duration="560000" />
       <workItem from="1618244680753" duration="13270000" />
       <workItem from="1618317773413" duration="508000" />
-      <workItem from="1618318297467" duration="19805000" />
+      <workItem from="1618318297467" duration="19876000" />
+      <workItem from="1618423997607" duration="149000" />
+      <workItem from="1618434963657" duration="3393000" />
     </task>
     <servers />
   </component>

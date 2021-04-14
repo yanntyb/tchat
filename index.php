@@ -28,7 +28,6 @@ else{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/chat.css">
-    <link rel="stylesheet" href="./css/user.css">
     <link rel="stylesheet" href="./css/data.css">
     <link rel="stylesheet" href="./css/privateMessage.css">
     <title>Document</title>
@@ -79,7 +78,9 @@ else{
             }
             ?>
         </div>
-        <div id="privateMessage"></div>
+        <div id="privateMessage">
+            <div id="privateMessageSend"></div>
+        </div>
     </div>
 </div>
 <script src="js/message.js"></script>

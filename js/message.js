@@ -2,8 +2,13 @@ const sendMessageButton = document.getElementById("sendMessage");
 const chat = document.getElementById("message_send");
 const input = document.getElementById("sendMessageInput");
 const messageDiv = document.getElementById("message");
-const privateMessageDiv = document.getElementById("privateMessage");
+const privateMessageDiv = document.getElementById("privateMessageSend");
+const privateMessageSuperDiv = document.getElementById("privateMessage");
+const dataDiv = document.getElementById("data");
+let formShowed = false;
 let scrolled = false;
+let privateMessageFlag = false;
+let user2Conv;
 
 
 function loadMessage(){
@@ -49,6 +54,9 @@ function loadMessage(){
 function timeOutRecur(){
     setTimeout(function(){
         loadMessage();
+        if(privateMessageFlag){
+            //showPrivateMessage(user2Conv);
+        }
         timeOutRecur();
     },1000);
 }
@@ -93,12 +101,15 @@ function sendMessageContent(message,user){
 }
 
 function showMessagerie(user1, user2){
+
     user1 = parseInt(user1);
     user2 = parseInt(user2);
+    user2Conv = user2;
     console.log("ok");
     if(user1 !== user2){
-        privateMessageDiv.style.backgroundColor = "#708090"
         showPrivateMessage(user2);
+        privateMessageSuperDiv.style.display = "flex";
+        privateMessageFlag = true;
     }
 }
 
@@ -111,7 +122,7 @@ function showPrivateMessage(user2){
         for(let message of messages){
             if(message.sended === false){
                 privateMessageDiv.innerHTML += `
-                <div class="privateMessageContent">
+                <div class="message_content">
                     <div class="messagePositionLeft">
                         <span>${message.message}</span>
                     </div>
@@ -120,7 +131,7 @@ function showPrivateMessage(user2){
             }
             else{
                 privateMessageDiv.innerHTML += `
-                <div class="privateMessageContent">
+                <div class="message_content">
                     <div class="messagePositionRight">
                         <span>${message.message}</span>
                     </div>
@@ -129,9 +140,26 @@ function showPrivateMessage(user2){
             }
 
         }
+        privateMessageShowForm();
     }
     xhr.open('GET', '/api/Message?showMessage=1&id=' + user2);
     xhr.send();
+}
+
+function privateMessageShowForm(){
+    if(!formShowed){
+        let divForm = document.createElement('div');
+        divForm.className += "privateMessageForm";
+        let input = document.createElement("input");
+        input.type = "text";
+        let submit = document.createElement("input");
+        submit.type = "submit";
+        divForm.appendChild(input);
+        divForm.appendChild(submit);
+        dataDiv.appendChild(divForm);
+        formShowed = true;
+    }
+
 }
 
 try{
