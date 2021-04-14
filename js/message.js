@@ -55,7 +55,7 @@ function timeOutRecur(){
     setTimeout(function(){
         loadMessage();
         if(privateMessageFlag){
-            //showPrivateMessage(user2Conv);
+            showPrivateMessage(user2Conv);
         }
         timeOutRecur();
     },1000);
@@ -118,7 +118,7 @@ function showPrivateMessage(user2){
     xhr.onload = function() {
         const messages = JSON.parse(xhr.responseText);
         console.log(messages);
-        privateMessageDiv.innerHTML = "";
+        privateMessageDiv.innerHTML = "<div id='closePrivateChat'><i id='closePrivateChatButton' class=\"fas fa-times\"></i></div>";
         for(let message of messages){
             if(message.sended === false){
                 privateMessageDiv.innerHTML += `
@@ -140,6 +140,14 @@ function showPrivateMessage(user2){
             }
 
         }
+        let closeButton = document.getElementById("closePrivateChatButton");
+        closeButton.addEventListener("click",function (){
+            privateMessageFlag = false;
+            privateMessageDiv.innerHTML = "";
+            privateMessageSuperDiv.style.display = "none";
+            dataDiv.removeChild(dataDiv.lastChild);
+            formShowed = false;
+        })
         privateMessageShowForm();
     }
     xhr.open('GET', '/api/Message?showMessage=1&id=' + user2);
@@ -149,13 +157,15 @@ function showPrivateMessage(user2){
 function privateMessageShowForm(){
     if(!formShowed){
         let divForm = document.createElement('div');
-        divForm.className += "privateMessageForm";
+        divForm.id += "privateMessageForm";
         let input = document.createElement("input");
         input.type = "text";
+        input.placeholder = "message"
         let submit = document.createElement("input");
         submit.type = "submit";
         divForm.appendChild(input);
         divForm.appendChild(submit);
+        divForm.style.display = "flex";
         dataDiv.appendChild(divForm);
         formShowed = true;
     }

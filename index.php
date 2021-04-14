@@ -83,6 +83,7 @@ else{
         </div>
     </div>
 </div>
+<script src="https://kit.fontawesome.com/78e483bd6f.js" crossorigin="anonymous"></script>
 <script src="js/message.js"></script>
 </body>
 </html>
