@@ -55,7 +55,7 @@ function timeOutRecur(){
     setTimeout(function(){
         loadMessage();
         if(privateMessageFlag){
-            showPrivateMessage(user2Conv);
+            //showPrivateMessage(user2Conv);
         }
         timeOutRecur();
     },1000);
@@ -125,6 +125,8 @@ function showPrivateMessage(user2){
                 <div class="message_content">
                     <div class="messagePositionLeft">
                         <span>${message.message}</span>
+                        <br>
+                        <span class="date">${message.date}</span>
                     </div>
                 </div>
             `
@@ -134,6 +136,8 @@ function showPrivateMessage(user2){
                 <div class="message_content">
                     <div class="messagePositionRight">
                         <span>${message.message}</span>
+                        <br>
+                        <span class="date">${message.date}</span>
                     </div>
                 </div>
             `

@@ -73,8 +73,9 @@ class MessageManager
     }
 
     public function sendPrivateMessage(int $user1, int $user2, string $message){
-        $conn = $this->db->prepare("INSERT INTO private_message (message) VALUES (:message)");
+        $conn = $this->db->prepare("INSERT INTO private_message (message, date) VALUES (:message, :date)");
         $conn->bindValue(":message", $message);
+        $conn->bindValue(":date", date('l jS \of F Y h:i:s A'));
         $conn->execute();
         $id = $this->db->lastInsertId();
 

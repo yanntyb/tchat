@@ -70,7 +70,7 @@ else{
                 <?php
             }
             else{?>
-                <h1>Connecté en temps que <?php echo $manager->getUserById($_SESSION["user"])->getName() ?></h1>
+                <h1>Connecté en tant que <?php echo $manager->getUserById($_SESSION["user"])->getName() ?></h1>
                 <div><a id="deco" href="utils/connexion.php?deco=1">Deconnexion</a></div>
                 <div><a id="modifProfil" href="#">Modifier Profile</a></div>
 
