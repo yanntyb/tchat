@@ -55,7 +55,7 @@ function timeOutRecur(){
     setTimeout(function(){
         loadMessage();
         if(privateMessageFlag){
-            //showPrivateMessage(user2Conv);
+            showPrivateMessage(user2Conv);
         }
         timeOutRecur();
     },1000);
