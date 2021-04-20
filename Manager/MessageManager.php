@@ -78,7 +78,7 @@ class MessageManager
         $conn->bindValue(":date", date('l jS \of F Y h:i:s A'));
         $conn->execute();
         $id = $this->db->lastInsertId();
-
+        //Need lastInsertedId because there is a join table
         $conn = $this->db->prepare("INSERT INTO private_message_user (user1_id, user2_id, message_id) VALUES (:user1, :user2, :id)");
         $conn->bindValue(":user1", $user1);
         $conn->bindValue(":user2", $user2);

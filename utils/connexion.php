@@ -7,24 +7,33 @@ use App\Classes\DB;
 use App\Entity\User;
 use App\Manager\UserManager;
 
+function sanitize($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    $data = addslashes($data);
+
+    return $data;
+}
+
 
 session_start();
 
 if(isset($_GET, $_GET["deco"]) && $_GET["deco"] === "1" ){
     unset($_SESSION["user"]);
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: ../");
 }
 else{
     if(isset($_POST, $_POST["email"], $_POST["pass"])){
         $userManager = new UserManager();
-        $user = $userManager->getUserByLog($_POST["email"], $_POST["pass"]);
+        $user = $userManager->getUserByLog(sanitize($_POST["email"]), sanitize($_POST["pass"]));
         if(!is_null($user)){
             $_SESSION["user"] = $user->getId();
-            header("Location: ../index.php");
+            header("Location: ../");
         }
         else{
-            echo "erreur";
+            header("Location: ../?error=connection");
         }
     }
 }

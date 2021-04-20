@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b880b779-fb80-4ace-80e0-beb53609416f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/inscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/DB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/DB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manager/MessageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Manager/MessageManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manager/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Manager/UserManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Message/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Message/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/PrivateMessage/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/PrivateMessage/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/data.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/data.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/privateMessage.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/privateMessage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/connexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/utils/connexion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +60,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/PrivateMessage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -81,7 +95,10 @@
       <workItem from="1618318297467" duration="19876000" />
       <workItem from="1618423997607" duration="149000" />
       <workItem from="1618434963657" duration="6685000" />
-      <workItem from="1618664487998" duration="696000" />
+      <workItem from="1618664487998" duration="968000" />
+      <workItem from="1618818198583" duration="22709000" />
+      <workItem from="1618901585707" duration="4417000" />
+      <workItem from="1618907407337" duration="9137000" />
     </task>
     <servers />
   </component>

@@ -1,16 +1,15 @@
 const sendMessageButton = document.getElementById("sendMessage");
 const chat = document.getElementById("message_send");
 const input = document.getElementById("sendMessageInput");
-const messageDiv = document.getElementById("message");
 const privateMessageDiv = document.getElementById("privateMessageSend");
 const privateMessageSuperDiv = document.getElementById("privateMessage");
-const dataDiv = document.getElementById("data");
 let formShowed = false;
-let scrolledChat = false;
+let flagScrollGlobal = false;
+let flagScrollPrivate = false;
 let privateMessageFlag = false;
 let user2Conv;
 
-
+//Get messages from Message Api
 function loadMessage(){
     const message = document.getElementsByClassName("message_content");
 
@@ -21,22 +20,23 @@ function loadMessage(){
         for (let message of messages){
             chat.innerHTML += `
             <div class="message_content">
-                    <div class="profile">
+                <div class="profile">
                         <a class="sendMessageLink" data-id="${message.user_id}">${message.user}</a> 
                         <span class="date">${message.date}</span>
-                    </div> 
-                    <div class="message_content_end">${message.message}</div>
-                </div>
-                
+                </div> 
+                <div class="message_content_end">${message.message}</div>
             </div>
+            <div id="separation"></div>
         `
         }
-        if(message.length > 0 && !scrolledChat){
-            messageDiv.scrollTop = message[message.length - 1].offsetTop;
-            scrolledChat = true;
+        if(!flagScrollGlobal){
+            let div = document.getElementById("message")
+            div.scrollTop = div.scrollHeight;
+            flagScrollGlobal = true;
         }
-        let messageLink = document.getElementsByClassName("sendMessageLink");
 
+        let messageLink = document.getElementsByClassName("sendMessageLink");
+        //Set event at click on User Name
         for(let link of messageLink){
             link.addEventListener("click", function(e){
                 e.preventDefault();
@@ -51,9 +51,11 @@ function loadMessage(){
 
 }
 
+//Load message from chat and from private chat recursively
 function timeOutRecur(){
     setTimeout(function(){
         loadMessage();
+        //Only load private message recursively when its shown
         if(privateMessageFlag){
             showPrivateMessage(user2Conv);
         }
@@ -61,6 +63,7 @@ function timeOutRecur(){
     },1000);
 }
 
+//Get the $_SESSION["user"] (the current user connected)
 function getSessionUser(message){
     if(message.length > 0) {
         getUser(true, false, null, message);
@@ -69,58 +72,82 @@ function getSessionUser(message){
 }
 
 function getUser(send, get, user2, message = null){
-    let sended = false;
+    //need a sent flag because dunno why message are sent 2 times
     let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = (e) => {
-            if (xhr.status === 200 && !sended) {
-                let user = JSON.parse(xhr.responseText)
+
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                let user = JSON.parse(xhr.responseText);
+                console.log(user);
+                //send message to global chat
                 if(send){
                     sendMessageContent(message, user["user"]);
-                    sended = true;
                 }
+                //show private messagerie
                 else{
                     showMessagerie(user["user"], user2)
-                    sended = true;
                 }
 
             }
         };
+
         xhr.open('GET', '/api/Message?getUser=1');
         xhr.send();
 }
 
+//send message to global chat
 function sendMessageContent(message,user){
     let xhr = new XMLHttpRequest();
     const messageData = {
         'user': user,
         'message': message,
     };
-    xhr.open('POST', '/api/Message');
+    flagScrollGlobal = false;
+    xhr.open('POST', '/api/Message/index.php');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(messageData));
 }
 
+//Show private messagerie
 function showMessagerie(user1, user2){
 
     user1 = parseInt(user1);
     user2 = parseInt(user2);
-    user2Conv = user2;
-    console.log("ok");
     if(user1 !== user2){
+        user2Conv = user2;
         showPrivateMessage(user2);
         privateMessageSuperDiv.style.display = "flex";
         privateMessageFlag = true;
+
+    }
+    else{
+        privateMessageSuperDiv.style.display = "none";
+        privateMessageDiv.innerHTML = "";
+        //Delete private chat form
+        privateMessageSuperDiv.removeChild(privateMessageSuperDiv.lastChild);
+        privateMessageFlag = false;
+        formShowed = false;
     }
 }
 
 function showPrivateMessage(user2){
     let xhr = new XMLHttpRequest();
     xhr.onload = function() {
+        //Get all private messages between $_SESSION["user"] and user2
         const messages = JSON.parse(xhr.responseText);
-        console.log(messages);
-        privateMessageDiv.innerHTML = "<div id='closePrivateChat'><i id='closePrivateChatButton' class=\"fas fa-times\"></i></div>";
+        let topDiv = document.createElement("div");
+        privateMessageDiv.innerHTML = "";
+        topDiv.id = "privateMessageInfoDiv";
+        if(messages.length > 0){
+            topDiv.innerHTML = "<h2 id='privateMessageTo'>" + messages[messages.length - 1]["user2_id"] +"</h2>"
+        }
+        else{
+            topDiv.innerHTML = "<h2 id='privateMessageTo'>Send message to see your recipients</h2>";
+        }
+        topDiv.innerHTML += "<div id='closePrivateChat'><i id='closePrivateChatButton' class=\"fas fa-times\"></i></div>";
+        privateMessageDiv.appendChild(topDiv);
         for(let message of messages){
-            if(message.sended === false){
+            if(message.sent === false){
                 privateMessageDiv.innerHTML += `
                 <div class="message_content">
                     <div class="messagePositionLeft">
@@ -129,6 +156,7 @@ function showPrivateMessage(user2){
                         <span class="date">${message.date}</span>
                     </div>
                 </div>
+                <div id="separation"></div>
             `
             }
             else{
@@ -140,27 +168,36 @@ function showPrivateMessage(user2){
                         <span class="date">${message.date}</span>
                     </div>
                 </div>
+                <div id="separation"></div>
             `
             }
 
         }
+        if(!flagScrollPrivate){
+            privateMessageDiv.scrollTop = privateMessageDiv.scrollHeight;
+            flagScrollPrivate = true;
+        }
         let closeButton = document.getElementById("closePrivateChatButton");
-        closeButton.addEventListener("click",function (){
-            privateMessageFlag = false;
-            privateMessageDiv.innerHTML = "";
-            privateMessageSuperDiv.style.display = "none";
-            dataDiv.removeChild(dataDiv.lastChild);
-            formShowed = false;
-        })
+        try{
+            closeButton.addEventListener("click",function (){
+                privateMessageFlag = false;
+                privateMessageDiv.innerHTML = "";
+                privateMessageSuperDiv.style.display = "none";
+                privateMessageSuperDiv.removeChild(privateMessageSuperDiv.lastChild);
+                formShowed = false;
+            })
+        }
+        catch(e){}
 
 
         privateMessageShowForm();
     }
 
-    xhr.open('GET', '/api/Message?showMessage=1&id=' + user2);
+    xhr.open('GET', '/api/PrivateMessage?showMessage=1&id=' + user2);
     xhr.send();
 }
 
+//Private message Form to send message
 function privateMessageShowForm(){
     if(!formShowed){
         let divForm = document.createElement('div');
@@ -173,9 +210,10 @@ function privateMessageShowForm(){
         divForm.appendChild(input);
         divForm.appendChild(submit);
         divForm.style.display = "flex";
-        dataDiv.appendChild(divForm);
+        privateMessageSuperDiv.appendChild(divForm);
         submit.addEventListener("click", function(e){
             e.preventDefault();
+            //Send private message only if input have content
             if(input.value.length > 0){
                 sendPrivateMessage(input.value);
 
@@ -192,11 +230,13 @@ function sendPrivateMessage(message){
         'user': user2Conv,
         'message': message,
     };
-    xhr.open('POST', '/api/PrivateMessage');
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.open('POST', '/api/PrivateMessage/index.php');
     xhr.send(JSON.stringify(messageData));
+    flagScrollPrivate = false;
 }
 
+
+//Send message event in global chat only when user is connected (when the input exist)
 try{
     sendMessageButton.addEventListener("click", function(e){
         e.preventDefault();
@@ -209,4 +249,5 @@ catch(e){}
 
 
 timeOutRecur();
+
 

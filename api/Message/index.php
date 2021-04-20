@@ -27,11 +27,6 @@ switch($requestType) {
             if( isset($_GET["getUser"]) && $_GET["getUser"] === "1"){
                 echo sendUserSession();
             }
-            elseif(isset($_GET["showMessage"]) && $_GET["showMessage"] === "1"){
-                if(isset($_GET["id"])){
-                    echo getPrivateMessage(intval($_GET["id"]),$managerMessage, $managerUser);
-                }
-            }
             else{
                 echo getMessages($managerMessage, $managerUser);
             }
@@ -87,21 +82,6 @@ function sendUserSession(){
     return json_encode(["user" => $_SESSION["user"]]);
 }
 
-function getPrivateMessage(int $id, MessageManager $manager, UserManager $managerUser){
-    $messages = $manager->getPrivateMessage($_SESSION["user"], $id);
-    for($index = 0; $index < count($messages); $index ++){
-        if($messages[$index]["user1_id"] === strval($_SESSION["user"])){
-            $messages[$index]["user1_id"] = $managerUser->getUserById(intval($_SESSION["user"]))->getName();
-            $messages[$index]["user2_id"] = $managerUser->getUserById(intval($messages[$index]["user2_id"]))->getName();
-            $messages[$index]["sended"] = true;
-        }
-        else{
-            $messages[$index]["user1_id"] = $managerUser->getUserById(intval($messages[$index]["user1_id"]))->getName();
-            $messages[$index]["user2_id"] = $managerUser->getUserById(intval($_SESSION["user"]))->getName();
-            $messages[$index]["sended"] = false;
-        }
-    }
-    return json_encode($messages);
-}
+
 
 exit;

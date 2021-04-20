@@ -8,7 +8,7 @@ use App\Classes\DB;
 use App\Entity\User;
 use App\Manager\UserManager;
 
-
+//Check if user is already logged
 session_start();
 if(isset($_SESSION, $_SESSION["user"])){
     $connected = true;
@@ -33,6 +33,17 @@ else{
     <title>Document</title>
 </head>
 <body>
+<?php if(isset($_GET["error"])){?>
+    <div id="error"><?php
+        echo "Error at " . $_GET["error"];?>
+    </div><?php
+}
+if(isset($_GET["success"])){?>
+    <div id="success"><?php
+    echo "Success at " . $_GET["success"];?>
+    </div><?php
+}
+?>
 <div id="global">
     <div id="chat">
         <div id="message">
@@ -55,32 +66,52 @@ else{
     <div id="data">
         <div id="connexion"><?php
             if(!$connected){?>
+            <h2>Connexion</h2>
                 <div id="connexionForm">
                     <form action="utils/connexion.php" method="POST">
                         <div>
                             <input name="email" type="text" placeholder="email">
-                            <label for="pass">Password</label>
-                            <input name="pass" type="password">
+                        </div>
+                        <div>
+                            <input name="pass" type="password" placeholder="pass">
                         </div>
                         <div>
                             <input type="submit" value="connexion">
                         </div>
                     </form>
                 </div>
+            <h2>Inscription</h2>
+                <div id="inscriptionForm">
+
+                    <form action="utils/inscription.php" method="POST">
+                        <div>
+                            <input name="email" type="text" placeholder="email">
+                        </div>
+                        <div>
+                            <input name="name" type="text" placeholder="name">
+                        </div>
+                        <div>
+                            <input name="pass" type="text" placeholder="pass">
+                        </div>
+                        <div>
+                            <input type="submit" value="inscription">
+                        </div>
+                    </form>
+                </div>
+        </div>
                 <?php
             }
             else{?>
-                <h1>Connecté en tant que <?php echo $manager->getUserById($_SESSION["user"])->getName() ?></h1>
-                <div><a id="deco" href="utils/connexion.php?deco=1">Deconnexion</a></div>
-                <div><a id="modifProfil" href="#">Modifier Profile</a></div>
-
-                <?php
+                <div id="eta">
+                    <h1>Connecté en tant que <?php echo $manager->getUserById($_SESSION["user"])->getName() ?></h1>
+                    <div><a id="deco" href="utils/connexion.php?deco=1">Deconnexion</a></div>
+                </div><?php
             }
             ?>
-        </div>
-        <div id="privateMessage">
-            <div id="privateMessageSend"></div>
-        </div>
+
+    </div>
+    <div id="privateMessage">
+        <div id="privateMessageSend"></div>
     </div>
 </div>
 <script src="https://kit.fontawesome.com/78e483bd6f.js" crossorigin="anonymous"></script>

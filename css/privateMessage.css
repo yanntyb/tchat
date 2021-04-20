@@ -1,14 +1,17 @@
 #privateMessage {
     width: 100%;
     height: 50%;
-    background-color: #708090;
+    background-color: #9dafbf;
     display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 5%;
 
 }
 
 #privateMessageSend{
     width: 100%;
-    height: 80%;
+    height: 90%;
     margin: 1% auto auto;
     flex-direction: row;
     align-items: flex-end;
@@ -16,13 +19,13 @@
     overflow: scroll;
     overflow-x: hidden;
     font-size: 2rem;
-    background-color: #708090;
+    background-color: #9dafbf;
 }
 
 .message_content{
     width: 100%;
     margin-top: 1%;
-    color: lightgrey;
+    color: #2F4F4F;
 }
 
 
@@ -35,7 +38,7 @@
 }
 
 #privateMessageForm{
-    background-color: #708090;
+    background-color: #9dafbf;
     width: 100%;
     height: 10%;
     display: flex;
@@ -50,18 +53,56 @@
 }
 
 #privateMessageSend::-webkit-scrollbar-track {
-    background: #708090;
+    background: #9dafbf;
 }
 
 #privateMessageSend::-webkit-scrollbar-thumb {
     background-color: black;
     border-radius: 20px;
-    border: 3px solid orange;
+    border: 3px solid #715e7b;
 }
 
 #closePrivateChat {
     position: sticky;
-    top: 0;
+    top: 2vh;
+    height: 2vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding-left: 2%;
-    background-color: #708090;
+}
+
+#privateMessageTo{
+    width: 100%;
+    text-align: center;
+    position: sticky;
+    height: 2vh;
+    top: 0;
+    z-index: 10;
+}
+
+#privateMessageInfoDiv{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: #9dafbf;
+}
+
+#privateMessageInfoDiv h2{
+    color: #8d1749;
+}
+
+@media screen and (max-width: 450px){
+    #privateMessage{
+        height: 80vh;
+        position: absolute;
+        top: 17vh;
+
+    }
+    #privateMessageSend{
+        font-size: 2rem;
+    }
+    #privateMessageForm{
+        height: 6vh;
+    }
 }

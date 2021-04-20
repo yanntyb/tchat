@@ -38,6 +38,7 @@ class UserManager
         return $user;
     }
 
+    //Used for connection to check if an email match with a password
     public function getUserByLog(string $mail, string $pass){
         $conn = $this->db->prepare("SELECT * FROM user WHERE mail = :mail");
         $conn->bindValue(":mail", $mail);
@@ -45,7 +46,7 @@ class UserManager
         if($conn->execute()){
             $select = $conn->fetch();
             if(isset($select["mail"])){
-                if($select["pass"] === $pass){
+                if(password_verify($pass ,$select["pass"])){
                     $user = new User();
                     $user
                         ->setName($select["name"])
@@ -55,6 +56,14 @@ class UserManager
             }
         }
         return $user;
+    }
+
+    public function insertUser(string $mail, string $pass, string $name){
+        $conn = $this->db->prepare("INSERT INTO user (name, pass, mail) VALUES (:name, :pass, :mail)");
+        $conn->bindValue(":name", $name);
+        $conn->bindValue(":pass", $pass,);
+        $conn->bindValue(":mail", $mail);
+        $conn->execute();
     }
 
 }

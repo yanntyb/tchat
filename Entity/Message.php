@@ -11,6 +11,7 @@ class Message
     public function __construct(string $message = null, string $date = null, int $id= null){
         date_default_timezone_set('UTC');
         $this->message = $message;
+        //init the object with actual date time
         $this->date = date('l jS \of F Y h:i:s A');
         $this->id = $id;
     }

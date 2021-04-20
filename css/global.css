@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 html {
@@ -13,10 +12,103 @@ html {
 }
 
 #global {
-    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background-color: #747882;
+    background-color:  #D3D3D3;
 }
 
+#connexion {
+    width: 100%;
+    background-color: #715e7b;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#connexionForm{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-right: 2px solid gainsboro;
+}
+
+#connexionForm div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#inscriptionForm{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#inscriptionForm div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#connexion h2{
+    margin-left: 2%;
+    color: #8d1749;
+}
+
+#error, #success{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 4vh;
+    animation-name: suppress;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+#error{
+    background-color: indianred;
+}
+
+#success{
+    background-color: darkseagreen;
+}
+
+@keyframes suppress {
+    from{opacity:100%}
+    to {opacity:0}
+}
+
+@media screen and (max-width: 450px){
+    #global{
+        display: block;
+    }
+    #connexion{
+        position: absolute;
+        top: 0;
+        padding: 0;
+        height: 20vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #connexion input{
+        width: 80%;
+    }
+}
