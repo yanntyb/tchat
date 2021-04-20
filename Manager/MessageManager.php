@@ -17,8 +17,11 @@ class MessageManager
     public function __construct(){
         $this->db = DB::getInstance();
     }
-    
-    public function getMessages(){
+
+    /**
+     * @return array
+     */
+    public function getMessages(): array{
         $conn = $this->db->prepare("SELECT * FROM message");
         $messages = [];
         if($conn->execute()){
@@ -34,6 +37,10 @@ class MessageManager
         return $messages;
     }
 
+    /**
+     * @param int $id
+     * @return mixed|null
+     */
     public function getUserFk(int $id){
         $conn = $this->db->prepare("SELECT message_user.user_fk From message_user WHERE message_user.message_fk = :id");
         $conn->bindValue(":id", $id);
@@ -43,7 +50,11 @@ class MessageManager
         return null;
     }
 
-    public function sendMessages(string $messageContent, int $id_user){
+    /**
+     * @param string $messageContent
+     * @param int $id_user
+     */
+    public function sendMessages(string $messageContent, int $id_user): void{
         $message = new Message();
         $message->setMessage($messageContent);
         $conn = $this->db->prepare("INSERT INTO message (message, date) VALUES (:message, :date)");
@@ -59,7 +70,12 @@ class MessageManager
 
     }
 
-    public function getPrivateMessage(int $user1, int $user2){
+    /**
+     * @param int $user1
+     * @param int $user2
+     * @return array
+     */
+    public function getPrivateMessage(int $user1, int $user2): array{
         $conn = $this->db->prepare("SELECT * FROM private_message INNER JOIN private_message_user ON private_message.id = private_message_user.message_id  WHERE (private_message_user.user1_id = :id1 AND private_message_user.user2_id = :id2) OR (private_message_user.user2_id = :id1 AND private_message_user.user1_id = :id2) ");
         $conn->bindValue(":id1", $user1);
         $conn->bindValue(":id2", $user2);
@@ -72,7 +88,12 @@ class MessageManager
         return $messages;
     }
 
-    public function sendPrivateMessage(int $user1, int $user2, string $message){
+    /**
+     * @param int $user1
+     * @param int $user2
+     * @param string $message
+     */
+    public function sendPrivateMessage(int $user1, int $user2, string $message): void{
         $conn = $this->db->prepare("INSERT INTO private_message (message, date) VALUES (:message, :date)");
         $conn->bindValue(":message", $message);
         $conn->bindValue(":date", date('l jS \of F Y h:i:s A'));

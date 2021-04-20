@@ -65,6 +65,12 @@ function getMessages(MessageManager $managerMessage, UserManager $managerUser): 
     return json_encode($response);
 }
 
+/**
+ * @param MessageManager $managerMessage
+ * @param int $message_id
+ * @param UserManager $managerUser
+ * @return User|string
+ */
 function getUser(MessageManager $managerMessage, int $message_id, UserManager $managerUser){
     $id = $managerMessage->getUserFk($message_id);
     if(!is_null($id)){
@@ -74,10 +80,18 @@ function getUser(MessageManager $managerMessage, int $message_id, UserManager $m
     return "User inconnue";
 }
 
+/**
+ * @param MessageManager $managerMessage
+ * @param int $id
+ * @param string $message
+ */
 function sendMessage(MessageManager $managerMessage, int $id, string $message){
     $managerMessage->sendMessages($message, $id);
 }
 
+/**
+ * @return false|string
+ */
 function sendUserSession(){
     return json_encode(["user" => $_SESSION["user"]]);
 }

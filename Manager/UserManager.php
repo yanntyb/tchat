@@ -19,7 +19,11 @@ class UserManager
         $this->db = DB::getInstance();
     }
 
-    public function getUserById(int $id){
+    /**
+     * @param int $id
+     * @return User
+     */
+    public function getUserById(int $id): User{
         $conn = $this->db->prepare("SELECT * FROM user WHERE id = :id");
         $conn->bindValue(":id", $id);
         $user = new User();
@@ -39,7 +43,13 @@ class UserManager
     }
 
     //Used for connection to check if an email match with a password
-    public function getUserByLog(string $mail, string $pass){
+
+    /**
+     * @param string $mail
+     * @param string $pass
+     * @return User
+     */
+    public function getUserByLog(string $mail, string $pass): User{
         $conn = $this->db->prepare("SELECT * FROM user WHERE mail = :mail");
         $conn->bindValue(":mail", $mail);
         $user = null;
@@ -58,7 +68,12 @@ class UserManager
         return $user;
     }
 
-    public function insertUser(string $mail, string $pass, string $name){
+    /**
+     * @param string $mail
+     * @param string $pass
+     * @param string $name
+     */
+    public function insertUser(string $mail, string $pass, string $name): void{
         $conn = $this->db->prepare("INSERT INTO user (name, pass, mail) VALUES (:name, :pass, :mail)");
         $conn->bindValue(":name", $name);
         $conn->bindValue(":pass", $pass,);

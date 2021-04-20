@@ -29,6 +29,7 @@ function loadMessage(){
             <div id="separation"></div>
         `
         }
+        //Scrool global chat to the maximum to see first the last inserted message
         if(!flagScrollGlobal){
             let div = document.getElementById("message")
             div.scrollTop = div.scrollHeight;
@@ -178,6 +179,7 @@ function showPrivateMessage(user2){
             flagScrollPrivate = true;
         }
         let closeButton = document.getElementById("closePrivateChatButton");
+        //try{} to not add event when there is no closeButton
         try{
             closeButton.addEventListener("click",function (){
                 privateMessageFlag = false;
@@ -232,6 +234,7 @@ function sendPrivateMessage(message){
     };
     xhr.open('POST', '/api/PrivateMessage/index.php');
     xhr.send(JSON.stringify(messageData));
+    //flag set to false to allow scrolling to the last private message
     flagScrollPrivate = false;
 }
 
